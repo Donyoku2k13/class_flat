@@ -1,54 +1,78 @@
 #include "Room.h"
-#include<iostream>
-
-room_::room_(const char* name, int square)
+#include <iostream>
+using namespace std;
+room::room()
 {
-	this->name = new char[strlen(name)+1];
+	name = new char[strlen("hall") + 1];
+	strcpy_s(this->name, strlen("hall") + 1, "hall");
+	this->area = 20;
+}
+
+room::room(const char* name, int area)
+{
+	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name) + 1, name);
-	this->area = square;
+	this->area = area;
 }
 
-void room_::setName()
+room::room(const room&obj)
 {
-	if (name != nullptr)
-	{
-		delete[] name;
-	}
-	this->name = new char[strlen(name + 1)];
-}
-void room_::setArea(int a)
-{
-	area = a;
-}
-
-room_::room_(const room_& obj) {
 	this->name = new char[strlen(name) + 1];
 	strcpy_s(this->name, strlen(name + 1), obj.name);
 	this->area = obj.area;
 }
 
-void room_::info()
+
+void room::setName()
+{
+	char tmp[100];
+	if (name != nullptr)
+	{
+		delete[] name;
+	}
+	cout << "Enter name of room" << endl;
+	cin >> tmp;
+	this->name = new char[strlen(name + 1)];
+	strcpy_s(this->name, strlen(tmp) + 1, tmp);
+}
+void room::setArea()
+{
+	int a = 0;
+	cout << "enter area of room" << endl;
+	cin >> a;
+	this->area = a;
+}
+
+void room::rewrite(const room & p)
+{
+	this->area = p.area;
+	if (strlen(this->name) != strlen(p.name)) {
+		delete[]this->name;
+		this->name = new char[strlen(p.name) + 1];
+	}
+	strcpy_s(this->name, strlen(p.name) + 1, p.name);
+}
+
+
+
+
+void room::info() const
 {
 	cout << "name:  " << name << "   area: " << area << endl;
 }
 
-int room_::getArea()
+int room::getArea()
 {
-	if (area == 0)
-	{
-		return;
-	}
 	return area;
 }
 
-bool room_::getName()
+bool room::getName()
 {
 	return name;
 }
 
-room_::~room_()
-{
-	if (name != nullptr) {
-		delete[]name;
-    }
+room::~room() {
+
+	delete[]this->name;
 }
+
