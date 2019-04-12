@@ -1,21 +1,22 @@
+#pragma once
 using namespace std;
-class room_
+class room
 {
 private:
 	char* name;
 	int area;
 
 public:
-	room_(const char* name, int area);
-	room_(const char & obj);
+	room();
+	room(const char* name, int area);
+	room(const room & obj);
 	//setters
 	void setName();
-	void setArea(int a);
-
+	void setArea();
+	void rewrite(const room&p);
 	//getters
-	void info();
+	void info()const;
 	int getArea();
 	bool getName();
-	~room_();
-};
-
+	~room();
+}; 
