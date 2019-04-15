@@ -39,6 +39,18 @@ public:
 		}
 		return area;
 	}
+	int checkPrice(const flat& obj){
+		if (this->price==obj.price){
+			return true;}
+		else return false;}
+	
+	int checkArea(const flat& obj){
+		if (this->getFlatArea==obj.getFlatArea){return true;}
+		else return false;}
+	
+			
+
+			
 	void info() {
 		cout << "Flat amount = " << this->price
 			<< "\ncount of rooms = " << cntRooms
